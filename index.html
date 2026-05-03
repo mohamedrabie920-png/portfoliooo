@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محمد ربيع — مُنشئ محتوى</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #C8973A;
+  --gold-light: #E8C07A;
+  --gold-pale: #F7EDD6;
+  --ink: #1A1208;
+  --ink-mid: #4A3F2F;
+  --ink-light: #8A7D6A;
+  --cream: #FAF7F2;
+  --white: #FFFFFF;
+  --border: rgba(200,151,58,0.2);
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+/* ─── HERO ─── */
+.hero {
+  padding: 3.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 2rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 58px;
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.hero h1 span { color: var(--gold); }
+
+.hero-desc {
+  margin-top: 1rem;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--ink-mid);
+  font-family: 'Tajawal', sans-serif;
+  max-width: 500px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  padding-bottom: 4px;
+}
+
+.stat-num {
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--ink-light);
+  margin-top: 4px;
+  font-family: 'Tajawal', sans-serif;
+}
+
+/* ─── CERTS ─── */
+.certs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.cert-tag {
+  background: var(--gold-pale);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+}
+
+/* ─── SECTION HEADER ─── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0 1.5rem;
+}
+
+.section-header h2 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--ink-light);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ─── SKILLS ─── */
+.skills-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.skill-pill {
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--ink-mid);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-family: 'Tajawal', sans-serif;
+  cursor: default;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.skill-pill:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ─── FILTER TABS ─── */
+.filter-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--ink-light);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  transition: all 0.2s;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: white;
+}
+
+/* ─── WORK GRID ─── */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.work-card {
+  background: var(--white);
+  padding: 1.5rem;
+  transition: background 0.2s;
+}
+
+.work-card:hover { background: var(--gold-pale); }
+
+.work-client {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* ══════════════════════════════════════════════════
+   لإضافة هايبرلينك لمقال، غيّر:
+     <div class="work-title">عنوان المقال</div>
+   إلى:
+     <a class="work-title work-link" href="https://رابط-المقال" target="_blank">عنوان المقال</a>
+   ══════════════════════════════════════════════════ */
+.work-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.6;
+  font-family: 'Tajawal', sans-serif;
+  display: block;
+}
+
+a.work-title.work-link {
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+
+a.work-title.work-link:hover { color: var(--gold); }
+
+.work-type {
+  margin-top: 10px;
+  font-size: 10px;
+  color: var(--ink-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.type-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  flex-shrink: 0;
+}
+
+/* ─── SCRIPTS ─── */
+.scripts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.script-block {
+  border-right: 3px solid var(--gold);
+  padding-right: 1.25rem;
+}
+
+.script-category {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* ══════════════════════════════════════════════════
+   لإضافة هايبرلينك لسكربت، غيّر:
+     <div class="script-item">عنوان السكربت</div>
+   إلى:
+     <a class="script-item script-link" href="https://رابط" target="_blank">عنوان السكربت</a>
+   ══════════════════════════════════════════════════ */
+.script-item {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-mid);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-family: 'Tajawal', sans-serif;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.script-item:last-child { border-bottom: none; }
+
+a.script-item.script-link { transition: color 0.2s; }
+a.script-item.script-link:hover { color: var(--gold); }
+
+/* ─── TOOLS ─── */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.tool-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.tool-icon {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: var(--gold);
+}
+
+.tool-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.tool-desc {
+  font-size: 11px;
+  color: var(--ink-light);
+  font-family: 'Tajawal', sans-serif;
+  line-height: 1.6;
+}
+
+/* ─── CONTACT ─── */
+.contact-section {
+  margin-top: 3.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 2.5rem;
+}
+
+.contact-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.contact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--ink-light);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.contact-name {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ink-mid);
+  font-family: 'Tajawal', sans-serif;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-item:hover { color: var(--gold); }
+
+.contact-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--gold-pale);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+
+.contact-cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cta-btn {
+  background: var(--gold);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Cairo', sans-serif;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: opacity 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.cta-btn:hover { opacity: 0.85; }
+
+.cta-btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 11px 32px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Cairo', sans-serif;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.cta-btn-outline:hover {
+  background: var(--gold-pale);
+}
+
+.footer-line {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copy {
+  font-size: 11px;
+  color: var(--ink-light);
+  font-family: 'Tajawal', sans-serif;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: row; justify-content: flex-start; }
+  .hero h1 { font-size: 40px; }
+  .scripts-grid { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr 1fr; }
+  .contact-top { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <div class="hero">
+    <div>
+      <div class="hero-badge">Content Creator · مُنشئ محتوى</div>
+      <h1>محمد<br><span>ربيع</span></h1>
+      <p class="hero-desc">
+        مُنشئ محتوى بخبرة أكثر من 7 سنوات في أكثر من 15 صناعة مختلفة. مقالات سيو، محتوى تسويقي، سكربتات فيديو وبودكاست، انفوجرافيكس
+
+ — أساسيات التصميم والمونتاج والسوشيال ميديا
+      </p>
+      <div class="certs">
+        <span class="cert-tag">Google Digital Marketing</span>
+        <span class="cert-tag">HubSpot Academy</span>
+        <span class="cert-tag">SEO Content</span>
+        <span class="cert-tag">Adobe Suite</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">+60</div>
+        <div class="stat-label">مقال منشور</div>
+      </div>
+      <div>
+        <div class="stat-num">+15</div>
+        <div class="stat-label">عميل وعلامة تجارية</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">لغات المحتوى</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ SKILLS ═══════════ -->
+  <div class="section-header">
+    <h2>التخصصات</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-row">
+    <span class="skill-pill">كتابة SEO</span>
+    <span class="skill-pill">سكربتات بودكاست</span>
+    <span class="skill-pill">سكربتات ريلز وفيديو</span>
+    <span class="skill-pill">محتوى تسويقي</span>
+    <span class="skill-pill">كتابة علمية وتاريخية</span>
+    <span class="skill-pill">محتوى موضة وفاخر</span>
+    <span class="skill-pill">محتوى تقني وتكنولوجيا</span>
+    <span class="skill-pill">Content Strategy</span>
+    <span class="skill-pill">Research & Fact-checking</span>
+    <span class="skill-pill">Arabic & English</span>
+  </div>
+
+  <!-- ═══════════ ARTICLES ═══════════ -->
+  <div class="section-header">
+    <h2>المقالات — عملاء ومشاريع</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="filter-tabs">
+    <button class="tab-btn active" onclick="filterCards('all', this)">الكل</button>
+    <button class="tab-btn" onclick="filterCards('tech', this)">تقنية</button>
+    <button class="tab-btn" onclick="filterCards('construction', this)">بناء وعقارات</button>
+    <button class="tab-btn" onclick="filterCards('fashion', this)">موضة</button>
+    <button class="tab-btn" onclick="filterCards('logistics', this)">لوجستيات</button>
+    <button class="tab-btn" onclick="filterCards('medical', this)">طب وصحة</button>
+    <button class="tab-btn" onclick="filterCards('business', this)">أعمال</button>
+  </div>
+
+  <div class="work-grid" id="workGrid">
+
+    <!-- ══ بناء للمقاولات ══
+         لإضافة رابط: غيّر <div class="work-title"> إلى <a class="work-title work-link" href="رابط" target="_blank">
+    -->
+    <div class="work-card" data-cat="construction">
+      <div class="work-client">بناء للمقاولات</div>
+      <div class="work-title"><a class="work-title work-link" href="https://benaac.com/%D8%A3%D9%81%D8%B6%D9%84-%D8%B4%D8%B1%D9%83%D8%A9-%D8%A8%D9%86%D8%A7%D8%A1-%D8%B9%D9%85%D8%A7%D8%B1%D8%A7%D8%AA-%D9%81%D9%8A-%D9%85%D8%B5%D8%B1/" target="_blank">كيف تختار أفضل شركة بناء عمارات في مصر؟</a></div>
+      <div class="work-type"><span class="type-dot"></span> مقال SEO — بناء وعقارات</div>
+    </div>
+
+    <div class="work-card" data-cat="construction">
+      <div class="work-client">بناء للمقاولات</div>
+      <div class="work-title"><a class="work-title work-link" href="https://benaac.com/%D8%AA%D9%83%D9%84%D9%81%D9%87-%D8%A8%D9%86%D8%A7%D8%A1-%D9%81%D9%8A%D9%84%D8%A7/" target="_blank">تكلفه بناء فيلا من الأساسات للتشطيب: دليلك الشامل من بناء</a></div>
+      <div class="work-type"><span class="type-dot"></span> دليل تفصيلي — عقارات</div>
+    </div>
+
+    <div class="work-card" data-cat="construction">
+      <div class="work-client">بناء للمقاولات</div>
+      <div class="work-title"><a class="work-title work-link" href="https://benaac.com/%D8%B3%D8%B9%D8%B1-%D9%85%D8%AA%D8%B1-%D8%A7%D9%84%D8%AE%D8%B1%D8%B3%D8%A7%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D9%84%D8%AD%D8%A9/" target="_blank">سعر متر الخرسانة المسلحة في مصر: كيف تتجنب النوع الخطأ؟</a></div>
+      <div class="work-type"><span class="type-dot"></span> مقال SEO تسعيري</div>
+    </div>
+
+    <div class="work-card" data-cat="construction">
+      <div class="work-client">بناء للمقاولات</div>
+      <div class="work-title"><a class="work-title work-link" href="https://benaac.com/%D8%AA%D9%83%D9%84%D9%81%D9%87-%D8%AA%D8%B4%D8%B7%D9%8A%D8%A8-%D8%B4%D9%82%D9%87/" target="_blank">افضل تكلفة تشطيب شقة 200 متر</a></div>
+      <div class="work-type"><span class="type-dot"></span> مقال SEO — تشطيبات</div>
+    </div>
+
+    <div class="work-card" data-cat="construction">
+      <div class="work-client">بناء للمقاولات</div>
+      <div class="work-title"><a class="work-title work-link" href="https://benaac.com/%D8%A3%D9%81%D8%B6%D9%84-%D8%B4%D8%B1%D9%83%D8%A9-%D8%AA%D8%B4%D8%B7%D9%8A%D8%A8%D8%A7%D8%AA-%D9%81%D9%84%D9%84/" target="_blank">افضل تكلفة تشطيب شقة 10 عوامل مهمة تحدد أفضل شركة تشطيبات فلل</a></div>
+      <div class="work-type"><span class="type-dot"></span> مقال قائمة — فلل</div>
+    </div>
+
+    <!-- ══ AXS ══ -->
+    <div class="work-card" data-cat="tech">
+      <div class="work-client">AXS</div>
+      <div class="work-title"><a class="work-title work-link" href="https://axs.sa/ar/blog/digital-transformation-in-saudi-arabia-vision-2030" target="_blank">التحول الرقمي في السعودية: كيف تقود التقنية رؤية 2030؟</a></div>
+      <div class="work-type"><span class="type-dot"></span> محتوى تقني — عربي وإنجليزي</div>
+    </div>
+
+    <div class="work-card" data-cat="tech">
+      <div class="work-client">AXS</div>
+      <div class="work-title"><a class="work-title work-link" href="https://axs.sa/ar/blog/top-10-cybersecurity-threats-in-2025" target="_blank">اكتشف أخطر التهديدات السيبرانية في 2025 وكيفية التصدى لها</a></div>
+      <div class="work-type"><span class="type-dot"></span> مقال تقني — أمن معلومات</div>
+    </div>
+
+    <div class="work-card" data-cat="tech">
+      <div class="work-client">مكينتي</div>
+      <div class="work-title"><a class="work-title work-link" href="https://makinatiapp.com/blog/%D8%AA%D8%B5%D9%84%D9%8A%D8%AD%20%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA" target="_blank">خدمات تصليح سيارات سريعة وفعالة من تطبيق مكينتي</a></div>
+      <div class="work-type"><span class="type-dot"></span> محتوى تسويقي — تطبيق</div>
+    </div>
+
+    <div class="work-card" data-cat="tech">
+      <div class="work-client">A&B</div>
+      <div class="work-title"><a class="work-title work-link" href="https://aandb-consulting.com/ar/blogs/73ba4fbc-a775-4fad-987a-38a4d324cb60" target="_blank">ضاعف أرباحك الآن: اكتشف فوائد التكنولوجيا الرقمية في الصناعة</a></div>
+      <div class="work-type"><span class="type-dot"></span> محتوى أعمال — استراتيجية</div>
+    </div>
+
+    <!-- ══ سولانج ══ -->
+    <div class="work-card" data-cat="fashion">
+      <div class="work-client">سولانج</div>
+      <div class="work-title"><a class="work-title work-link" href="https://solangshop.com/ar/blogs/news/%D8%A3%D9%86%D9%88%D8%A7%D8%B9-%D9%82%D8%B5%D9%91%D8%A7%D8%AA-%D8%A7%D9%84%D8%AC%D9%8A%D9%86%D8%B2?srsltid=AfmBOopd8vA9UGoxLC03mPNuS5J-AIdbN_t6Jp1lWtSoc4vfZhmF9tSi" target="_blank">أنواع قصّات الجينز: سكيني، واسع، ومستقيم</a></div>
+      <div class="work-type"><span class="type-dot"></span> محتوى موضة — عربي</div>
+    </div>
+
+    <div class="work-card" data-cat="fashion">
+      <div class="work-client">سولانج</div>
+      <div class="work-title"><a class="work-title work-link" href="https://solangshop.com/blogs/news/top-winter-fashion-trends-for-girls?srsltid=AfmBOooBUcvbHZnHHcsExLveuS9f5oly8sfD67EL_riW7rY3qeHV6ubn" target="_blank">Top Winter Fashion Trends for Girls in 2025</a></div>
+      <div class="work-type"><span class="type-dot"></span> Fashion Content — English</div>
+    </div>
+
+    <div class="work-card" data-cat="fashion">
+      <div class="work-client">ٍكيبر</div>
+      <div class="work-title"><a class="work-title work-link" href="https://skipper-hub.com/%D9%86%D9%82%D9%84-%D8%A7%D9%84%D8%A8%D8%B6%D8%A7%D8%A6%D8%B9-%D8%A7%D9%84%D8%AD%D8%B3%D8%A7%D8%B3%D8%A9-%D8%B9%D8%A8%D8%B1-%D8%A7%D9%84%D8%A8%D8%B1/" target="_blank">نقل البضائع الحساسة عبر البر: أهمية ومعايير لضمان سلامة الشحنات</a></div>
+      <div class="work-type"><span class="type-dot"></span> لوحستيات</div>
+    </div>
+
+    <!-- ══ سكيبر ══ -->
+    <div class="work-card" data-cat="logistics">
+      <div class="work-client">سكيبر</div>
+      <div class="work-title"><a class="work-title work-link" href="https://skipper-hub.com/%D8%B3%D8%B9%D8%B1-%D8%A7%D9%84%D9%83%D9%8A%D9%84%D9%88-%D9%81%D9%8A-%D8%A7%D9%84%D8%B4%D8%AD%D9%86-%D8%A7%D9%84%D8%AC%D9%88%D9%8A/" target="_blank">سعر الكيلو في الشحن الجوي: ما الذي يحدد التكلفة؟</a></div>
+      <div class="work-type"><span class="type-dot"></span> دليل SEO — لوجستيات</div>
+    </div>
+
+    <div class="work-card" data-cat="logistics">
+      <div class="work-client">سكيبر</div>
+      <div class="work-title"><a class="work-title work-link" href="https://skipper-hub.com/%D8%B4%D8%B1%D9%83%D8%A7%D8%AA-%D8%A7%D9%84%D8%B4%D8%AD%D9%86-%D8%A7%D9%84%D9%86%D8%A7%D8%B4%D8%A6%D8%A9-%D9%81%D9%8A-%D9%85%D8%B5%D8%B1/" target="_blank">سعركيف تغير شركات الشحن الناشئة في مصر قواعد اللعبة؟</a></div>
+      <div class="work-type"><span class="type-dot"></span> مقال تحليلي — شحن</div>
+    </div>
+
+    <div class="work-card" data-cat="logistics">
+      <div class="work-client">سكيبر</div>
+      <div class="work-title"><a class="work-title work-link" href="https://skipper-hub.com/%D8%B3%D8%B9%D8%B1-%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1-%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA-%D9%81%D9%8A-%D8%A7%D9%84%D9%8A%D9%88%D9%85/" target="_blank">دليل سعر إيجار السيارات في اليوم في مصر لعام 2025</a></div>
+      <div class="work-type"><span class="type-dot"></span> دليل تسعيري — نقل</div>
+    </div>
+
+    <!-- ══ عيادات الشناوي ══ -->
+    <div class="work-card" data-cat="medical">
+      <div class="work-client">عيادات الشناوي</div>
+      <div class="work-title"><a class="work-title work-link" href="https://elshenawy-dentalclinics.com/%d8%ad%d8%b4%d9%88-%d8%a7%d9%84%d8%b9%d8%b5%d8%a8-%d9%81%d9%8a-%d8%ac%d9%84%d8%b3%d8%a9-%d9%88%d8%a7%d8%ad%d8%af%d8%a9/" target="_blank">حشو العصب في جلسة واحدة بأقل قدر من الألم</a></div>
+      <div class="work-type"><span class="type-dot"></span> محتوى طبي — أسنان</div>
+    </div>
+
+    <div class="work-card" data-cat="medical">
+      <div class="work-client">عيادات الشناوي</div>
+      <div class="work-title"><a class="work-title work-link" href="https://elshenawy-dentalclinics.com/%D8%AA%D8%A8%D9%8A%D9%8A%D8%B6-%D8%A7%D9%84%D8%A3%D8%B3%D9%86%D8%A7%D9%86-%D8%A8%D8%A7%D8%B3%D8%AA%D8%AE%D8%AF%D8%A7%D9%85-%D8%A7%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D8%AD%D8%AF/" target="_blank">تبييض الأسنان باستخدام التقنيات الحديثة: أيّها يناسبك؟</a></div>
+      <div class="work-type"><span class="type-dot"></span> مقال SEO — طب أسنان</div>
+    </div>
+
+    <div class="work-card" data-cat="medical">
+      <div class="work-client">عيادات الشناوي</div>
+      <div class="work-title"><a class="work-title work-link" href="https://elshenawy-dentalclinics.com/%D9%85%D8%AA%D9%89-%D8%AA%D8%AD%D8%AA%D8%A7%D8%AC-%D8%AC%D8%B1%D8%A7%D8%AD%D8%A9-%D8%A7%D9%84%D8%A3%D8%B3%D9%86%D8%A7%D9%86-%D8%A8%D8%AA%D8%AE%D8%AF%D9%8A%D8%B1-%D9%83%D8%A7%D9%85%D9%84/" target="_blank">متى تحتاج جراحة الأسنان بتخدير كامل؟ دليلك لقرار آمن ومريح</a></div>
+      <div class="work-type"><span class="type-dot"></span> دليل طبي — جراحة</div>
+    </div>
+
+    <div class="work-card" data-cat="medical">
+      <div class="work-client">أخصائي التخاطب محمد عزمي</div>
+      <div class="work-title"><a class="work-title work-link" href="https://m-azmy.co/%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8-%D8%A7%D9%84%D8%B7%D9%81%D9%84-%D8%B9%D9%84%D9%89-%D8%A7%D9%84%D8%AD%D9%85%D8%A7%D9%85-%D8%A8%D8%AF%D9%88%D9%86-%D8%B9%D9%86%D8%A7%D8%AF-%D8%AE%D8%B7%D9%88%D8%A7%D8%AA/?srsltid=AfmBOorfmL66DI9XSYHHOw24BCf811N4dnvACQwXPZBXgd9A6Zee4Cy9" target="_blank">تدريب الطفل على الحمام بدون عناد: خطوات عملية مجربة</a></div>
+      <div class="work-type"><span class="type-dot"></span> محتوى صحة طفل</div>
+    </div>
+
+    <!-- ══ أعمال ══ -->
+    <div class="work-card" data-cat="business">
+      <div class="work-client">مكينتي</div>
+      <div class="work-title"><a class="work-title work-link" href="https://makinatiapp.com/blog/%D8%A7%D8%B5%D9%84%D8%A7%D8%AD%20%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA" target="_blank">أفضل مراكز إصلاح سيارات في السعودية</a></div>
+      <div class="work-type"><span class="type-dot"></span> تطبيق — محتوى تسويقي</div>
+    </div>
+
+    <div class="work-card" data-cat="business">
+      <div class="work-client">Yes Spaces</div>
+      <div class="work-title"><a class="work-title work-link" href="https://yes-spaces.net/%d8%ad%d8%ac%d8%b2-%d8%ba%d8%b1%d9%81%d8%a9-%d8%a7%d8%ac%d8%aa%d9%85%d8%a7%d8%b9%d8%a7%d8%aa-%d9%81%d9%8a-%d8%a7%d9%84%d9%82%d8%a7%d9%87%d8%b1%d8%a9-%d8%a7%d9%84%d8%ac%d8%af%d9%8a%d8%af%d8%a9/" target="_blank">حجز غرفة اجتماعات في القاهرة الجديدة : تجهيزات راقية وأجواء احترافية</a></div>
+      <div class="work-type"><span class="type-dot"></span> محتوى تسويقي — أعمال</div>
+    </div>
+
+    <div class="work-card" data-cat="business">
+      <div class="work-client">مكينتي</div>
+      <div class="work-title">مزايا الورشة المتنقلة ولماذا أصبحت الخيار الأفضل؟</div>
+      <div class="work-type"><span class="type-dot"></span> محتوى تسويقي — تطبيق</div>
+    </div>
+
+    <div class="work-card" data-cat="business">
+      <div class="work-client">A&B</div>
+      <div class="work-title"><a class="work-title work-link" href="https://aandb-consulting.com/ar/blogs/760a339e-fe53-45bd-8f13-56363d9b5f41" target="_blank">تخطيط مالي وتشغيلي: السر الذي لا تخبرك به الشركات الناجحة</a></div>
+      <div class="work-type"><span class="type-dot"></span> محتوى أعمال — استراتيجية</div>
+    </div>
+
+  </div><!-- /work-grid -->
+
+  <!-- ═══════════ SCRIPTS ═══════════ -->
+  <div class="section-header">
+    <h2>سكربتات الفيديو والبودكاست</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="scripts-grid">
+
+    <div class="script-block">
+      <div class="script-category">بودكاست علماء ولاد تسعة</div>
+      <!-- لإضافة رابط: <a class="script-item script-link" href="رابط" target="_blank">العنوان</a> -->
+      <a class="script-item script-link" href="https://www.buzzsprout.com/1021528/episodes/11041406" target="_blank">نيكولا تسلا — وسواس قهري جعله الأكثر إبداعاً</a>
+      <a class="script-item script-link" href="https://www.buzzsprout.com/1021528/episodes/10664847" target="_blank">فيثاغورس — صاحب أشهر نظرية في الرياضيات قتله الفول</a> 
+  <a class="script-item script-link" href="https://www.buzzsprout.com/1021528/episodes/10498240" target="_blank">توماس إديسون — صراع مع نفسه انتهى بكارثة</a> 
+    </div>
+
+    <div class="script-block">
+      <div class="script-category">برنامج شِمال ستان (كتابة وتقديم)</div>
+        <a class="script-item script-link" href="https://www.youtube.com/watch?v=47G96nKU7yM&t=122s" target="_blank">مدام اعتماد تتطوع للعمل لصالح مخابرات أجنبية</a> 
+        <a class="script-item script-link" href="https://www.youtube.com/watch?v=sqeMQqo2XG0&t=82s" target="_blank">عامل الأسانسير.. ليه فيه وظائف تافهة لحد دلوقتي؟</a> 
+        <a class="script-item script-link" href="https://www.youtube.com/watch?v=S9Qki1RaC8I&t=30s" target="_blank">الإسفنجة القذرة — الطريقة الرومانية للقضاء على فساد الأستاذ سيد
+</a> 
+    </div>
+
+    <div class="script-block">
+      <div class="script-category">منصة دقائق — فيديوهات</div>
+        <a class="script-item script-link" href="https://www.youtube.com/watch?v=MSONIDD56V0" target="_blank">هل كان بإمكاننا إنقاذ جاك من الغرق في تايتنك؟
+</a> 
+
+      <a href="https://www.youtube.com/watch?v=XMyn1JuEk60" class="script-item" target="_blank">المرأة قبل وبعد الحرب العالمية الأولى</a>
+      <a href="https://www.youtube.com/watch?v=ZkCtBO5JXqU" class="script-item" target="_blank">تجربة أتاتورك في نقل تركيا للعصر الحديث
+</a>
+<a href="https://www.youtube.com/watch?v=ZkCtBO5JXqUhttps://www.youtube.com/watch?v=47Gmwq-o6dQ" class="script-item" target="_blank">أدوية ساهمت في إطالة أعمارنا</a>    </div>
+
+    <div class="script-block">
+      <div class="script-category">مجلة الرجل + منصة رع</div>
+      <a href="https://docs.google.com/document/d/1UOFJm6shd2I2bmNSD1NvieBTiEuyGb9RWkanvi-i_Zc/edit?usp=sharing" class="script-item" target="_blank">إنفيديا — شركة هزمت جوجل ومايكروسوفت</a>
+      <a href="https://docs.google.com/document/d/1LWdWPsLv6pZLbWUDeKQ3di-RQEMVkWMWRZ8JjGjPP6w/edit?usp=sharing" class="script-item" target="_blank">5 يخوت في 2024 عصر جديد للأناقة</a>
+      <a href="https://docs.google.com/document/d/1coQDbJcwFkoxHmPG7Dc5gA19e4vjhI9sk9DNcg6wkvk/edit?usp=sharing" class="script-item" target="_blank">السبب وراء تفضيل الأثرياء الملابس البسيطة</a>
+      <div class="script-item">5 قواعد عن المال لا يعرفها إلا الأثرياء</div>
+    </div>
+
+  </div><!-- /scripts-grid -->
+
+  <!-- ═══════════ TOOLS ═══════════ -->
+  <div class="section-header">
+    <h2>الأدوات والمهارات التقنية</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-icon">✦</div>
+      <div class="tool-name">SEO Writing</div>
+      <div class="tool-desc">كتابة محتوى متوافق مع خوارزميات البحث</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">◈</div>
+      <div class="tool-name">Adobe Photoshop</div>
+      <div class="tool-desc">تصميم وتعديل الصور والمواد البصرية</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">▶</div>
+      <div class="tool-name">Adobe Premiere</div>
+      <div class="tool-desc">مونتاج وتحرير الفيديو</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">◉</div>
+      <div class="tool-name">After Effects</div>
+      <div class="tool-desc">موشن جرافيك وإضافة المؤثرات البصرية</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">◆</div>
+      <div class="tool-name">Google Analytics</div>
+      <div class="tool-desc">تحليل أداء المحتوى وسلوك الزوار</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">◇</div>
+      <div class="tool-name">HubSpot Marketing</div>
+      <div class="tool-desc">استراتيجيات التسويق الرقمي وإدارة المحتوى</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ CONTACT ═══════════ -->
+  <div class="contact-section">
+    <div class="contact-top">
+      <div>
+        <div class="contact-label">للتواصل والتعاون</div>
+        <div class="contact-name">محمد ربيع</div>
+        <div class="contact-items">
+
+          <!-- واتساب / هاتف -->
+          <a class="contact-item" href="https://wa.me/201099825184" target="_blank">
+            <div class="contact-icon">📱</div>
+            <span>+20 109 982 5184</span>
+          </a>
+
+          <!-- إيميل -->
+          <a class="contact-item" href="mailto:Mohamed.rabie920@gmail.com">
+            <div class="contact-icon">✉</div>
+            <span>Mohamed.rabie920@gmail.com</span>
+          </a>
+
+          <!-- ══ أضف روابط سوشيال ميديا هنا ══
+          <a class="contact-item" href="https://linkedin.com/in/USERNAME" target="_blank">
+            <div class="contact-icon">in</div>
+            <span>LinkedIn</span>
+          </a>
+          <a class="contact-item" href="https://instagram.com/USERNAME" target="_blank">
+            <div class="contact-icon">ig</div>
+            <span>Instagram</span>
+          </a>
+          -->
+
+        </div>
+      </div>
+
+      <div class="contact-cta">
+        <a class="cta-btn" href="mailto:Mohamed.rabie920@gmail.com">تواصل عبر الإيميل ↗</a>
+        <a class="cta-btn-outline" href="https://wa.me/201099825184" target="_blank">واتساب ↗</a>
+      </div>
+    </div>
+
+    <div class="footer-line">
+      <span class="footer-copy">© 2025 محمد ربيع — جميع الحقوق محفوظة</span>
+      <span class="footer-copy">Content Creator · SEO Writer · Scriptwriter</span>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+function filterCards(cat, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.work-card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+  });
+  // إعادة حساب الـ gap بعد الفلترة
+  const grid = document.getElementById('workGrid');
+  const visible = grid.querySelectorAll('.work-card:not([style*="none"])');
+  grid.style.gridTemplateColumns = visible.length < 3
+    ? 'repeat(' + visible.length + ', 1fr)'
+    : 'repeat(auto-fill, minmax(270px, 1fr))';
+}
+</script>
+
+</body>
+</html>
